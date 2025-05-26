@@ -39,7 +39,7 @@
     .sidebar {
       position: relative;
       width: 200px;
-      padding: 20px;
+      padding: 85px 20px 20px 20px;
       font-family: 'Bebop', cursive;
       font-size: 22px;
       color: yellow;
@@ -48,8 +48,8 @@
       position: absolute;
       top: 0;
       left: 0;
-      width: 270px;
-      height: 180px;
+      width: 405px;
+      height: 270px;
       background-repeat: no-repeat;
       background-size: contain;
       z-index: 0;
@@ -59,7 +59,7 @@
     .menu-item {
       position: relative;
       z-index: 1;
-      margin-bottom: 25px;
+      margin-bottom: 20px;
       cursor: pointer;
       color: yellow;
       transition: color 0.3s;
@@ -130,130 +130,101 @@
     <div class="sidebar">
       <div id="spotlight" class="spotlight-bg"></div>
       <div class="menu-item" data-spotlight="spotlight-home.png">Home</div>
-      <div class="menu-item" data-spotlight="spotlight-inquiries.png">Inquiries</div>
+      <div class="menu-item active" data-spotlight="spotlight-inquiries.png" data-default="true">Inquiries</div>
       <div class="menu-item" data-spotlight="spotlight-reviews.png">Reviews</div>
       <div class="menu-item" data-spotlight="spotlight-galleries.png">Gallery</div>
     </div>
 
     <div class="form-container">
-      <h2>Submit a New Inquiry</h2>
-      <p>Please provide as thorough information as possible, so we can accurately quote a price for the desired job. All data is 100% encrypted and anonymous!</p>
+  <h2>Submit a New Inquiry</h2>
+  <p>Please provide as thorough information as possible, so we can accurately quote a price for the desired job. All data is 100% encrypted and anonymous!</p>
 
-      <label for="jobType">Job Type</label>
-      <select id="jobType">
-        <option selected>Job Type</option>
-        <option>Single Unit Blind</option>
-        <option>Single Unit Shade</option>
-        <option>Single Unit Open</option>
-        <option>Multi Unit Blind</option>
-        <option>Multi Unit Shade</option>
-        <option>Multi Unit Open</option>
-      </select>
+  <label for="jobType">Job Type</label>
+  <select id="jobType">
+    <option selected>Job Type</option>
+    <option>Single Unit Blind</option>
+    <option>Single Unit Shade</option>
+    <option>Single Unit Open</option>
+    <option>Multi Unit Blind</option>
+    <option>Multi Unit Shade</option>
+    <option>Multi Unit Open</option>
+  </select>
 
-      <label for="urgency">Urgency</label>
-      <select id="urgency">
-        <option selected>Urgency</option>
-        <option>6 month+</option>
-        <option>1-5 months</option>
-        <option>2-3 weeks</option>
-        <option>1 week</option>
-        <option>ASAP</option>
-      </select>
+  <label for="urgency">Urgency</label>
+  <select id="urgency">
+    <option selected>Urgency</option>
+    <option>6 month+</option>
+    <option>1-5 months</option>
+    <option>2-3 weeks</option>
+    <option>1 week</option>
+    <option>ASAP</option>
+  </select>
 
-      <label for="cleanup">Clean-up (Optional)</label>
-      <select id="cleanup">
-        <option selected>Clean-up (Optional)</option>
-        <option>Yes</option>
-        <option>No</option>
-      </select>
+  <label for="cleanup">Clean-up (Optional)</label>
+  <select id="cleanup">
+    <option selected>Clean-up (Optional)</option>
+    <option>Yes</option>
+    <option>No</option>
+  </select>
 
-      <label for="businessName">Business Name</label>
-      <input type="text" id="businessName" placeholder="Business Name">
+  <label for="businessName">Business Name</label>
+  <input type="text" id="businessName" placeholder="Business Name">
 
-      <label for="yourAddress">Your Address</label>
-      <input type="text" id="yourAddress" placeholder="Your Address">
+  <label for="yourAddress">Your Address</label>
+  <input type="text" id="yourAddress" placeholder="Your Address">
 
-      <label for="jobAddress">Job Address</label>
-      <input type="text" id="jobAddress" placeholder="Job Address">
+  <label for="jobAddress">Job Address</label>
+  <input type="text" id="jobAddress" placeholder="Job Address">
 
-      <label for="budget">Budget</label>
-      <input type="text" id="budget" placeholder="Budget">
+  <label for="budget">Budget</label>
+  <input type="text" id="budget" placeholder="Budget">
 
-      <div class="section-title">Identifying Info</div>
-      <div class="small-description">Provide as much possible information about the problem site so our team can diagnose a solution.</div>
+  <div class="section-title">Identifying Info</div>
+  <div class="small-description">Provide as much possible information about the problem site so our team can diagnose a solution.</div>
 
-      <label for="photos">Photo(s)</label>
-      <input type="file" id="photos">
+  <label for="photos">Photo(s)</label>
+  <input type="file" id="photos">
 
-      <textarea placeholder="Enter any other relevant information here"></textarea>
+  <textarea placeholder="Enter any other relevant information here"></textarea>
 
-      <div class="section-title">Your Info</div>
+  <div class="section-title">Your Info</div>
 
-      <label for="email">Email Address</label>
-      <input type="email" id="email" placeholder="Email Address">
+  <label for="email">Email Address</label>
+  <input type="email" id="email" placeholder="Email Address">
 
-      <label for="name">Name</label>
-      <input type="text" id="name" placeholder="Name">
+  <label for="name">Name</label>
+  <input type="text" id="name" placeholder="Name">
 
-      <label for="phone">Phone (Optional)</label>
-      <input type="text" id="phone" placeholder="Phone (Optional)">
+  <label for="phone">Phone (Optional)</label>
+  <input type="text" id="phone" placeholder="Phone (Optional)">
 
-      <label for="reference">Reference Number (Optional)</label>
-      <input type="text" id="reference" placeholder="Reference Number (Optional)">
+  <label for="reference">Reference Number (Optional)</label>
+  <input type="text" id="reference" placeholder="Reference Number (Optional)">
 
-      <button>Submit Inquiry</button>
-    </div>
+  <button>Submit Inquiry</button>
+</div>
+
     <img src="CurtainRight.png" alt="Right Curtain" class="curtain">
   </div>
 
   <script>
     const menuItems = document.querySelectorAll('.menu-item');
     const spotlight = document.getElementById('spotlight');
+    const defaultItem = document.querySelector('[data-default="true"]');
+
+    // Set default state on load
+    spotlight.style.backgroundImage = `url(${defaultItem.dataset.spotlight})`;
+    defaultItem.classList.add('active');
 
     menuItems.forEach(item => {
       item.addEventListener('mouseover', () => {
         spotlight.style.backgroundImage = `url(${item.dataset.spotlight})`;
+        item.classList.add('hovered');
       });
       item.addEventListener('mouseout', () => {
-        spotlight.style.backgroundImage = '';
+        spotlight.style.backgroundImage = `url(${defaultItem.dataset.spotlight})`;
+        item.classList.remove('hovered');
       });
-    });
-
-    document.querySelector("button").addEventListener("click", async (e) => {
-      e.preventDefault();
-
-      const data = {
-        jobType: document.getElementById("jobType").value,
-        urgency: document.getElementById("urgency").value,
-        cleanup: document.getElementById("cleanup").value,
-        businessName: document.getElementById("businessName").value,
-        yourAddress: document.getElementById("yourAddress").value,
-        jobAddress: document.getElementById("jobAddress").value,
-        budget: document.getElementById("budget").value,
-        email: document.getElementById("email").value,
-        name: document.getElementById("name").value,
-        phone: document.getElementById("phone").value,
-        reference: document.getElementById("reference").value
-      };
-
-      try {
-        const res = await fetch("/.netlify/functions/submitInquiry", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(data)
-        });
-
-        if (res.ok) {
-          alert("Thank you. We’ll be in contact soon.");
-        } else {
-          alert("Something went wrong. Please try again.");
-        }
-      } catch (err) {
-        console.error(err);
-        alert("Error submitting form.");
-      }
     });
   </script>
 </body>
