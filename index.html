@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Curtain Call - Inquiries</title>
   <style>
+    @font-face {
+      font-family: 'Bebop';
+      src: url('BEBOP.TTF') format('truetype');
+    }
+
     body {
       background: black;
       color: white;
@@ -30,6 +35,35 @@
     }
     .curtain {
       height: auto;
+    }
+    .sidebar {
+      position: relative;
+      width: 200px;
+      padding: 20px;
+      font-family: 'Bebop', cursive;
+      font-size: 22px;
+      color: yellow;
+    }
+    .spotlight-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 200px;
+      height: 240px;
+      background-size: cover;
+      z-index: 0;
+    }
+    .menu-item {
+      position: relative;
+      z-index: 1;
+      margin-bottom: 25px;
+      cursor: pointer;
+      color: yellow;
+      transition: color 0.3s;
+    }
+    .menu-item.active,
+    .menu-item:hover {
+      color: black;
     }
     .form-container {
       background: black;
@@ -89,6 +123,15 @@
 
   <div class="main-wrapper">
     <img src="CurtainLeft.png" alt="Left Curtain" class="curtain">
+
+    <div class="sidebar">
+      <div id="spotlight" class="spotlight-bg"></div>
+      <div class="menu-item" data-spotlight="spotlight-home.png">Home</div>
+      <div class="menu-item" data-spotlight="spotlight-inquiries.png">Inquiries</div>
+      <div class="menu-item" data-spotlight="spotlight-reviews.png">Reviews</div>
+      <div class="menu-item" data-spotlight="spotlight-galleries.png">Gallery</div>
+    </div>
+
     <div class="form-container">
       <h2>Submit a New Inquiry</h2>
       <p>Please provide as thorough information as possible, so we can accurately quote a price for the desired job. All data is 100% encrypted and anonymous!</p>
@@ -159,43 +202,56 @@
     </div>
     <img src="CurtainRight.png" alt="Right Curtain" class="curtain">
   </div>
+
   <script>
-document.querySelector("button").addEventListener("click", async (e) => {
-  e.preventDefault();
+    const menuItems = document.querySelectorAll('.menu-item');
+    const spotlight = document.getElementById('spotlight');
 
-  const data = {
-    jobType: document.getElementById("jobType").value,
-    urgency: document.getElementById("urgency").value,
-    cleanup: document.getElementById("cleanup").value,
-    businessName: document.getElementById("businessName").value,
-    yourAddress: document.getElementById("yourAddress").value,
-    jobAddress: document.getElementById("jobAddress").value,
-    budget: document.getElementById("budget").value,
-    email: document.getElementById("email").value,
-    name: document.getElementById("name").value,
-    phone: document.getElementById("phone").value,
-    reference: document.getElementById("reference").value
-  };
-
-  try {
-    const res = await fetch("/.netlify/functions/submitInquiry", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(data)
+    menuItems.forEach(item => {
+      item.addEventListener('mouseover', () => {
+        spotlight.style.backgroundImage = `url(${item.dataset.spotlight})`;
+      });
+      item.addEventListener('mouseout', () => {
+        spotlight.style.backgroundImage = '';
+      });
     });
 
-    if (res.ok) {
-      alert("Thank you. We’ll be in contact soon.");
-    } else {
-      alert("Something went wrong. Please try again.");
-    }
-  } catch (err) {
-    console.error(err);
-    alert("Error submitting form.");
-  }
-});
-</script>
+    document.querySelector("button").addEventListener("click", async (e) => {
+      e.preventDefault();
+
+      const data = {
+        jobType: document.getElementById("jobType").value,
+        urgency: document.getElementById("urgency").value,
+        cleanup: document.getElementById("cleanup").value,
+        businessName: document.getElementById("businessName").value,
+        yourAddress: document.getElementById("yourAddress").value,
+        jobAddress: document.getElementById("jobAddress").value,
+        budget: document.getElementById("budget").value,
+        email: document.getElementById("email").value,
+        name: document.getElementById("name").value,
+        phone: document.getElementById("phone").value,
+        reference: document.getElementById("reference").value
+      };
+
+      try {
+        const res = await fetch("/.netlify/functions/submitInquiry", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(data)
+        });
+
+        if (res.ok) {
+          alert("Thank you. We’ll be in contact soon.");
+        } else {
+          alert("Something went wrong. Please try again.");
+        }
+      } catch (err) {
+        console.error(err);
+        alert("Error submitting form.");
+      }
+    });
+  </script>
 </body>
 </html>
