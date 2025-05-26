@@ -48,10 +48,12 @@
       position: absolute;
       top: 0;
       left: 0;
-      width: 200px;
-      height: 240px;
-      background-size: cover;
+      width: 180px;
+      height: auto;
+      background-repeat: no-repeat;
+      background-size: contain;
       z-index: 0;
+      transition: background-image 0.3s, top 0.3s;
     }
     .menu-item {
       position: relative;
@@ -126,10 +128,10 @@
 
     <div class="sidebar">
       <div id="spotlight" class="spotlight-bg"></div>
-      <div class="menu-item" data-spotlight="spotlight-home.png">Home</div>
-      <div class="menu-item" data-spotlight="spotlight-inquiries.png">Inquiries</div>
-      <div class="menu-item" data-spotlight="spotlight-reviews.png">Reviews</div>
-      <div class="menu-item" data-spotlight="spotlight-galleries.png">Gallery</div>
+      <div class="menu-item" data-spotlight="spotlight-home.png" data-top="0px">Home</div>
+      <div class="menu-item" data-spotlight="spotlight-inquiries.png" data-top="60px">Inquiries</div>
+      <div class="menu-item" data-spotlight="spotlight-reviews.png" data-top="115px">Reviews</div>
+      <div class="menu-item" data-spotlight="spotlight-galleries.png" data-top="170px">Gallery</div>
     </div>
 
     <div class="form-container">
@@ -210,9 +212,11 @@
     menuItems.forEach(item => {
       item.addEventListener('mouseover', () => {
         spotlight.style.backgroundImage = `url(${item.dataset.spotlight})`;
+        spotlight.style.top = item.dataset.top;
       });
       item.addEventListener('mouseout', () => {
         spotlight.style.backgroundImage = '';
+        spotlight.style.top = '';
       });
     });
 
